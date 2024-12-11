@@ -1,0 +1,4 @@
+operator:
+  image:
+    repository: singlestore/operator
+    tag: 3.258.0-f5ba0d6a

@@ -1,0 +1,70 @@
+replicaCount: 1
+
+image:
+  repository: chenmey85/singlestore-studio
+  pullPolicy: IfNotPresent
+  tag: "4.0.11"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "singlestore-studio"
+
+rollingUpdate:
+  maxSurge: 1
+  maxUnavailable: 1
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: NodePort
+  port: 80
+
+livenessProbe:
+  initialDelaySeconds: 180
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+readinessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+ingress:
+  enabled: false 
+  hosts: []
+  tls: []
+
+extraContainerEnv: {}
+
+resources:
+  limits:
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
